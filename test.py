@@ -52,12 +52,3 @@ prediction = predict_user_input(user_input)
 # Display the prediction
 st.write('Prediction:')
 st.write(prediction)
-
-# Set the configuration for ngrok
-ngrok_tunnel = ngrok.connect(port='8501')
-
-# Print the public URL of the app
-st.write('Public URL:', ngrok_tunnel.public_url)
-
-# Run the Streamlit app
-st.run()
