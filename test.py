@@ -44,21 +44,32 @@ Data Understanding:
 ## Data Gathering, Data Understanding, and Data Exploration
 """
 
+# Read File
 import requests
 from io import StringIO
+
+# Import Module
 import pandas as pd
 import numpy as np
 import datetime
 import io
 
+# Visualization
+import matplotlib.pyplot as plt
+import matplotlib.dates as mdates
+import seaborn as sns
+color_pal = sns.color_palette()
+
+# Modelling
 import xgboost as xgb
 from sklearn.metrics import mean_squared_error
 
+# Mount your Google Drive
 from google.colab import drive
 drive.mount('/content/drive')
-from ipywidgets import interact_manual
 
-import streamlit as st
+# UI
+from ipywidgets import interact_manual
 
 # File path to the CSV file in Google Drive
 file_path = '/content/drive/My Drive/Colab Notebooks/FINAL_PROJECT/Crime_Data_from_2020_to_Present.csv'
@@ -464,43 +475,3 @@ merged_df.rename(columns={'AREA_fut': 'AREA'}, inplace=True)
 merged_df = merged_df[['Date Rptd', 'AREA', 'pred']]
 
 merged_df
-
-# Function to output prediction based on user input
-def predict_user_input(AREA,
-                       dayofweek,
-                       quarter,
-                       month,
-                       year,
-                       dayofyear):
-    # Reshape the user input into a 2-dimensional numpy array
-    user_input = np.array([[AREA, dayofweek, quarter, month, year, dayofyear]])
-    
-    # Use the XGBoost model to predict on the user input (replace 'reg' with your actual model)
-    prediction = reg.predict(user_input).round(0)
-    
-    return prediction[0]  # Return the predicted value
-
-def main():
-    st.title("Crime Prediction App")
-    st.write("Enter the following parameters to predict the crime:")
-
-    # Using streamlit's slider and selectbox widgets to take user input
-    AREA = st.selectbox("Select Area", ['Central', 'Rampart', 'Southwest', 'Hollenbeck', 'Harbor',
-                                        'Hollywood', 'Wilshire', 'West LA', 'Van Nuys', 'West Valley',
-                                        'Northeast', '77th Street', 'Newton', 'Pacific', 'N Hollywood',
-                                        'Foothill', 'Devonshire', 'Southeast', 'Mission', 'Olympic',
-                                        'Topanga'])
-
-    dayofweek = st.slider("Select Day of Week", 0, 6)
-    quarter = st.slider("Select Quarter", 1, 4)
-    month = st.slider("Select Month", 1, 12)
-    year = st.slider("Select Year", 2020, 2025)
-    dayofyear = st.slider("Select Day of Year", 1, 366)
-
-    # Button to trigger the prediction
-    if st.button("Predict"):
-        prediction = predict_user_input(AREA, dayofweek, quarter, month, year, dayofyear)
-        st.write(f"Predicted crime: {prediction}")
-
-if __name__ == "__main__":
-    main()
