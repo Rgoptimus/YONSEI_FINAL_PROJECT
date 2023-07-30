@@ -51,13 +51,13 @@ from io import StringIO
 
 # Import Module
 import pandas as pd
-pip install numpy
+!pip install numpy
 import numpy as np
 import datetime
 import io
 
 # Visualization
-pip install matplotlib
+!pip install matplotlib
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 import seaborn as sns
