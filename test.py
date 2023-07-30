@@ -50,18 +50,15 @@ import pandas as pd
 import numpy as np
 import datetime
 import io
-import matplotlib.pyplot as plt
-import matplotlib.dates as mdates
-import seaborn as sns
-color_pal = sns.color_palette()
+
 import xgboost as xgb
 from sklearn.metrics import mean_squared_error
+
 from google.colab import drive
 drive.mount('/content/drive')
 from ipywidgets import interact_manual
 
 import streamlit as st
-import numpy as np
 
 # File path to the CSV file in Google Drive
 file_path = '/content/drive/My Drive/Colab Notebooks/FINAL_PROJECT/Crime_Data_from_2020_to_Present.csv'
