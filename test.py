@@ -58,7 +58,7 @@ def load_data(dataset_url):
         return None
 
 # Dataset URL (replace with your own dataset URL)
-dataset_url = "https://www.dropbox.com/scl/fi/in7lr0ira05dihe9h8n3b/Crime_Data_from_2020_to_Present.csv?rlkey=mb55nq2melqa6nyw73inf7l8k&dl=0"
+dataset_url = "https://www.dropbox.com/scl/fi/8234csggi1eqpguv9wwja/crime_data_LA.csv?rlkey=n7bt31qlo9pz72pcml99e1yk9&dl=0"
 
 
 # Load the data
