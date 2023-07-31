@@ -65,6 +65,15 @@ if uploaded_file is not None:
     st.title('Los Angeles Crime Data')
     st.dataframe(data)
 
+# Remove time from date rptd and date occ
+data['Date Rptd'] = data['Date Rptd'].str[:19]
+data['DATE OCC'] = data['DATE OCC'].str[:19]
+
+# Convert datetime column
+
+data['Date Rptd'] = pd.to_datetime(data['Date Rptd'], format = '%m/%d/%Y %H:%M:%S')
+data['DATE OCC'] = pd.to_datetime(data['DATE OCC'], format = '%m/%d/%Y %H:%M:%S')
+
 # Create New Dataframe
 ioc_df = data[['Date Rptd','AREA']]
 
