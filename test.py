@@ -116,6 +116,9 @@ X_train = sm.add_constant(X_train)
 model = sm.GLM(y_train, X_train, family=sm.families.Poisson())
 result = model.fit()
 
+# Extract the constant value from the model results
+const_value = result.params['const']
+
 # Function to output prediction based on user input
 def predict_user_input(AREA,
                        dayofweek,
@@ -125,12 +128,13 @@ def predict_user_input(AREA,
                        dayofyear):
                            
     # Reshape the user input into a 2-dimensional numpy array
-    user_input = np.array([[AREA, dayofweek, quarter, month, year, dayofyear]])
+    user_input = np.array([[const_value, AREA, dayofweek, quarter, month, year, dayofyear]])
     
-    # Use the XGBoost model to predict on the user input (replace 'reg' with your actual model)
+    # Use the Poisson regression model to predict on the user input
     prediction = result.predict(user_input).round(0)
     
     return prediction[0]  # Return the predicted value
+
 
 def main():
     st.title("Crime Prediction App")
