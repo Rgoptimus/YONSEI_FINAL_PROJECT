@@ -52,8 +52,6 @@ Data Understanding:
 27. 'LAT' : Lat
 28. 'LON' : Long """)
 
-st.set_option("server.maxMessageSize", 300)  # Set the maxMessageSize to 300 MB (or any desired value)
-
 # Create a file uploader
 uploaded_file = st.file_uploader("Upload CSV file", type=["csv"])
 
