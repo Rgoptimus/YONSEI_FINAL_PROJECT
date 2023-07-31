@@ -99,30 +99,22 @@ ioc_df = creature_features(ioc_df)
 # Initialize TimeSeriesSplit
 tss = TimeSeriesSplit(n_splits=5)
 
-for train_index, test_index in tss.split(ioc_df):
-    # Split the data into train and test sets based on TimeSeriesSplit
-    train_data, test_data = ioc_df.iloc[train_index], ioc_df.iloc[test_index]
+# Get the indices for the first fold
+train_index, test_index = next(tss.split(ioc_df))
 
-    # Define X_train, y_train, X_test, y_test
-    X_train = train_data[['AREA', 'dayofweek', 'quarter', 'month', 'year', 'dayofyear']]
-    y_train = train_data['Count']
-    X_test = test_data[['AREA', 'dayofweek', 'quarter', 'month', 'year', 'dayofyear']]
-    y_test = test_data['Count']
+# Split the data into train and test sets based on TimeSeriesSplit for the first fold
+train_data, test_data = ioc_df.iloc[train_index], ioc_df.iloc[test_index]
 
-    # Add constant for the model in X_train only
-    X_train = sm.add_constant(X_train)
+# Define X_train, y_train using data from the first fold
+X_train = train_data[['AREA', 'dayofweek', 'quarter', 'month', 'year', 'dayofyear']]
+y_train = train_data['Count']
 
-    # Create and fit the Poisson regression model
-    model = sm.GLM(y_train, X_train, family=sm.families.Poisson())
-    result = model.fit()
+# Add constant for the model
+X_train = sm.add_constant(X_train)
 
-    # Predict on the test set (Explicitly add constant column 'const' to X_test)
-    X_test = sm.add_constant(X_test, has_constant='add')  # Add constant to X_test
-
-    # Drop the constant column before prediction (This is necessary for compatibility with X_train)
-    X_test = X_test[X_train.columns]
-
-    y_pred = result.predict(X_test).round(0)  # Now predict without issues
+# Create and fit the Poisson regression model using data from the first fold
+model = sm.GLM(y_train, X_train, family=sm.families.Poisson())
+result = model.fit()
 
 # Function to output prediction based on user input
 def predict_user_input(AREA,
