@@ -141,7 +141,7 @@ def main():
     st.write("Enter the following parameters to predict the crime:")
 
     # Using streamlit's slider and selectbox widgets to take user input
-    AREA = st.slider("Select Day of Week", 1, 21)
+    AREA = st.slider("Select Area", 1, 21)
     dayofweek = st.slider("Select Day of Week", 0, 6)
     quarter = st.slider("Select Quarter", 1, 4)
     month = st.slider("Select Month", 1, 12)
