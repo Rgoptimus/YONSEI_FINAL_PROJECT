@@ -53,7 +53,7 @@ Data Understanding:
 28. 'LON' : Long """)
 
 # Create a file uploader
-uploaded_file = st.file_uploader("Upload Excel file", type=["excel"])
+uploaded_file = st.file_uploader("Upload Excel file", type=["xlsx"])
 
 # If a file is uploaded, read the data from the CSV file
 if uploaded_file is not None:
