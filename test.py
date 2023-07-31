@@ -6,8 +6,6 @@ import io
 from io import StringIO
 import datetime
 from sklearn.metrics import mean_squared_error
-from google.colab import drive
-drive.mount('/content/drive')
 from ipywidgets import interact_manual
 
 st.write("""# Predicting IoC Study Case LA""")
