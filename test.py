@@ -53,11 +53,11 @@ Data Understanding:
 28. 'LON' : Long """)
 
 # Create a file uploader
-uploaded_file = st.file_uploader("Upload CSV file", type=["csv"])
+uploaded_file = st.file_uploader("Upload Excel file", type=["excel"])
 
 # If a file is uploaded, read the data from the CSV file
 if uploaded_file is not None:
-    data = pd.read_csv(uploaded_file)
+    data = pd.read_excel(uploaded_file)
 
     # Display the data in Streamlit app
     st.title('Los Angeles Crime Data')
