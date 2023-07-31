@@ -51,7 +51,7 @@ Data Understanding:
 @st.cache  # Cache the data to improve performance
 def load_data(dataset_url):
     try:
-        data = pd.read_csv(dataset_url, sep=',')
+        data = pd.read_csv(dataset_url, sep=';')
         return data
     except pd.errors.ParserError:
         st.error("Error: Unable to load the dataset. Please check the file format and structure.")
