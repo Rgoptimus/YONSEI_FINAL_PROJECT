@@ -63,6 +63,14 @@ if uploaded_file is not None:
     st.title('Los Angeles Crime Data')
     st.dataframe(data)
 
+# Create New Dataframe
+ioc_df = data[['Date Rptd','AREA']]
+
+# Group by date rptd and area name
+ioc_df = ioc_df.groupby(['Date Rptd', 'AREA']).size().reset_index(name='Count')
+
+ioc_df.head()
+
 # Function to output prediction based on user input
 def predict_user_input(AREA,
                        dayofweek,
