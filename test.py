@@ -137,7 +137,7 @@ def predict_user_input(AREA,
     user_input = np.array([[AREA, dayofweek, quarter, month, year, dayofyear]])
     
     # Use the XGBoost model to predict on the user input (replace 'reg' with your actual model)
-    prediction = reg.predict(user_input).round(0)
+    prediction = result.predict(user_input).round(0)
     
     return prediction[0]  # Return the predicted value
 
