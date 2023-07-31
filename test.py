@@ -108,6 +108,8 @@ train_data, test_data = ioc_df.iloc[train_index], ioc_df.iloc[test_index]
 # Define X_train, y_train using data from the first fold
 X_train = train_data[['AREA', 'dayofweek', 'quarter', 'month', 'year', 'dayofyear']]
 y_train = train_data['Count']
+X_test = test_data[['AREA', 'dayofweek', 'quarter', 'month', 'year', 'dayofyear']]
+y_test = test_data['Count']
 
 # Add constant for the model
 X_train = sm.add_constant(X_train)
