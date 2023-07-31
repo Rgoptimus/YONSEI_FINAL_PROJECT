@@ -52,9 +52,6 @@ Data Understanding:
 27. 'LAT' : Lat
 28. 'LON' : Long """)
 
-# Function to load the dataset
-@st.cache  # Cache the data to improve performance
-
 # Create a file uploader
 uploaded_file = st.file_uploader("Upload CSV file", type=["csv"])
 
