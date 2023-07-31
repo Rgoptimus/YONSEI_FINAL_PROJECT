@@ -47,21 +47,26 @@ Data Understanding:
 27. 'LAT' : Lat
 28. 'LON' : Long """)
 
+# Function to load the dataset
+@st.cache  # Cache the data to improve performance
+def load_data(dataset_url):
+    try:
+        data = pd.read_csv(dataset_url, sep=',')
+        return data
+    except pd.errors.ParserError:
+        st.error("Error: Unable to load the dataset. Please check the file format and structure.")
+        return None
 
 # Dataset URL (replace with your own dataset URL)
 dataset_url = "https://www.dropbox.com/scl/fi/in7lr0ira05dihe9h8n3b/Crime_Data_from_2020_to_Present.csv?rlkey=mb55nq2melqa6nyw73inf7l8k&dl=0"
 
-# Function to load the dataset
-@st.cache  # Cache the data to improve performance
-def load_data():
-    data = pd.read_csv(dataset_url)
-    return data
 
 # Load the data
-df = load_data()
+df = load_data(dataset_url)
 
-# Display the dataset in a Streamlit table
-st.dataframe(df)
+# Display the dataset if it was loaded successfully
+if df is not None:
+    st.dataframe(df)
 
 # Function to output prediction based on user input
 def predict_user_input(AREA,
