@@ -38,7 +38,7 @@ Data Understanding:
 25. 'LOCATION' : Location
 26. 'Cross Street' : Cross Street
 27. 'LAT' : Lat
-28. 'LON' : Long
+28. 'LON' : Long """
 
 import streamlit as st
 import numpy as np
