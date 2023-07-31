@@ -1,5 +1,6 @@
 import streamlit as st
 import numpy as np
+import pandas as pd
 
 st.write("""# Predicting IoC Study Case LA""")
 
@@ -45,6 +46,22 @@ Data Understanding:
 26. 'Cross Street' : Cross Street
 27. 'LAT' : Lat
 28. 'LON' : Long """)
+
+
+# Dataset URL (replace with your own dataset URL)
+dataset_url = "https://drive.google.com/file/d/1NlSQCl4C9OupBKa8Tr63myMNjmD_SQmm/view?usp=drive_link"
+
+# Function to load the dataset
+@st.cache  # Cache the data to improve performance
+def load_data():
+    data = pd.read_csv(dataset_url)
+    return data
+
+# Load the data
+df = load_data()
+
+# Display the dataset in a Streamlit table
+st.dataframe(df)
 
 # Function to output prediction based on user input
 def predict_user_input(AREA,
