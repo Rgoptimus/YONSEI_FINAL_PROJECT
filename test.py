@@ -54,24 +54,17 @@ Data Understanding:
 
 # Function to load the dataset
 @st.cache  # Cache the data to improve performance
-def load_data(dataset_url):
-    try:
-        data = pd.read_csv(dataset_url, sep=';')
-        return data
-    except pd.errors.ParserError:
-        st.error("Error: Unable to load the dataset. Please check the file format and structure.")
-        return None
 
-# Dataset URL (replace with your own dataset URL)
-dataset_url = "https://www.dropbox.com/scl/fi/8234csggi1eqpguv9wwja/crime_data_LA.csv?rlkey=n7bt31qlo9pz72pcml99e1yk9&dl=0"
+# Create a file uploader
+uploaded_file = st.file_uploader("Upload CSV file", type=["csv"])
 
+# If a file is uploaded, read the data from the CSV file
+if uploaded_file is not None:
+    data = pd.read_csv(uploaded_file)
 
-# Load the data
-df = load_data(dataset_url)
-
-# Display the dataset if it was loaded successfully
-if df is not None:
-    st.dataframe(df)
+    # Display the data in Streamlit app
+    st.title('Los Angeles Crime Data')
+    st.dataframe(data)
 
 # Function to output prediction based on user input
 def predict_user_input(AREA,
