@@ -109,6 +109,8 @@ train_data, test_data = ioc_df.iloc[train_index], ioc_df.iloc[test_index]
 X_train = train_data[['AREA', 'dayofweek', 'quarter', 'month', 'year', 'dayofyear']]
 y_train = train_data['Count']
 
+X_train = X_train.astype(int)
+
 # Add constant for the model
 X_train = sm.add_constant(X_train)
 
