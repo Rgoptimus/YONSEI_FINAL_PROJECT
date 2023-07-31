@@ -1,7 +1,7 @@
 import streamlit as st
 import numpy as np
 
-st.write("""Predicting IoC Study Case LA""")
+st.write("""# Predicting IoC Study Case LA""")
 
 text = '''
 <div style="text-align: justify;">
